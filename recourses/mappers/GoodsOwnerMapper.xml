@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.wuliu.dao.GoodsOwnerDao">
+	<resultMap type="java.util.HashMap" id="resultMap">
+		<result property = "id" column = "id"/>
+		<result property = "auction_id" column = "auction_id"/>
+	</resultMap>
+	<select id = "getUserAllTransId" parameterType = "String" resultType = "java.util.HashMap">
+		select id,auction_id from goodsowner.`trans_req_order` where user_id = #{user_id}  ORDER BY gmt_create ASC
+	</select>
+</mapper>
