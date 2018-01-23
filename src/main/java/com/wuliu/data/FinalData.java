@@ -1,5 +1,6 @@
 package com.wuliu.data;
 
+import java.text.MessageFormat;
 import java.util.Properties;
 
 /**
@@ -18,6 +19,17 @@ public class FinalData {
 	public static final String LOGPATH() {
 		return properties.getProperty("LOGPATH");
 	}
+	
+	//appium日志的path
+	public static final String APPIUM_SHIPPER_LOG_PATH() {
+		return properties.getProperty("APPIUM_SHIPPER_LOG_PATH");
+	}
+	
+	//appium日志的path
+	public static final String APPIUM_CARRIER_LOG_PATH() {
+		return properties.getProperty("APPIUM_CARRIER_LOG_PATH");
+	}
+	
 	public static final String SHEETNAME() {
 		return properties.getProperty("SHEETNAME");
 	}
@@ -27,45 +39,23 @@ public class FinalData {
 	}
 	//app相关配置
     //要安装的app包名
-	public static final String SHIPPER() {
-		return properties.getProperty("SHIPPER");
+	public static final String SHIPPER_PACKAGNAME() {
+		return properties.getProperty("SHIPPER_PACKAGNAME");
 	}
 	//要安装的app包名
-	public static final String CARRIER() {
-		return properties.getProperty("CARRIER");
+	public static final String CARRIER_PACKAGNAME() {
+		return properties.getProperty("CARRIER_PACKAGNAME");
 	}
-	//APP存放的路径
-	public static final String SHIPPER_PATH() {
-		return properties.getProperty("SHIPPER_PATH");
+	//开启appium服务需要占用的端口号
+	public static final int SHIPPER_PORT() {
+		return Integer.parseInt( properties.getProperty("SHIPPER_PORT"));
 	}
-	//APP存放的路径
-	public static final String CARRIER_PATH() {
-		return properties.getProperty("CARRIER_PATH");
+	
+	//开启appium服务需要占用的端口号
+	public static final int CARRIER_PORT() {
+		return Integer.parseInt( properties.getProperty("CARRIER_PORT"));
 	}
-	//使用cmd命令开启appium服务
-	public static final String SHIPPER_CMD() {
-		return properties.getProperty("SHIPPER_CMD");
-	}
-	//使用cmd命令开启appium服务
-	public static final String CARRIER_CMD() {
-		return properties.getProperty("CARRIER_CMD");
-	}
-	//要连接的设备地址
-	public static final String SHIPPER_DEVICE() {
-		return properties.getProperty("SHIPPER_DEVICE");
-	}
-	//要连接的设备地址
-	public static final String CARRIER_DEVICE() {
-		return properties.getProperty("CARRIER_DEVICE");
-	}
-	//要连接的URL地址
-	public static final String SHIPPER_URL() {
-		return properties.getProperty("SHIPPER_URL");
-	}
-	//要连接的URL地址
-	public static final String CARRIER_URL() {
-		return properties.getProperty("CARRIER_URL");
-	}
+	
 	//要连接的设备名
 	public static final String SHIPPER_DEVICE_NAME() {
 		return properties.getProperty("SHIPPER_DEVICE_NAME");
@@ -74,13 +64,34 @@ public class FinalData {
 	public static final String CARRIER_DEVICE_NAME() {
 		return properties.getProperty("CARRIER_DEVICE_NAME");
 	}
+	
+	//使用cmd命令开启appium服务
+	public static final String SHIPPER_CMD() {
+		String SHIPPER_CMD =  MessageFormat.format(properties.getProperty("SHIPPER_CMD"),SHIPPER_PORT(),SHIPPER_DEVICE_NAME());
+		return SHIPPER_CMD;
+	}
+	//使用cmd命令开启appium服务
+	public static final String CARRIER_CMD() {
+		String CARRIER_CMD =  MessageFormat.format(properties.getProperty("CARRIER_CMD"),CARRIER_PORT(),CARRIER_DEVICE_NAME());
+		return CARRIER_CMD;
+	}
+
+	//要连接的URL地址
+	public static final String SHIPPER_URL() {
+		return MessageFormat.format(properties.getProperty("SHIPPER_URL"),properties.getProperty("SHIPPER_PORT"));
+	}
+	//要连接的URL地址
+	public static final String CARRIER_URL() {
+		return MessageFormat.format(properties.getProperty("CARRIER_URL"),properties.getProperty("CARRIER_PORT"));
+	}
+	
 	//要测试的安卓版本
-	public static final String ANDROID_SHIPPER() {
-		return properties.getProperty("ANDROID_SHIPPER");
+	public static final String SHIPPER_VERSION() {
+		return properties.getProperty("SHIPPER_VERSION");
 	}
 	//要测试的安卓版本
-	public static final String ANDROID_CARRIER() {
-		return properties.getProperty("ANDROID_CARRIER");
+	public static final String CARRIER_VERSION() {
+		return properties.getProperty("CARRIER_VERSION");
 	}
 	
 }

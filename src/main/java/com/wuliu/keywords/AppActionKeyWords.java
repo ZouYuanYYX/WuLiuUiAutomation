@@ -2,10 +2,10 @@ package com.wuliu.keywords;
 
 
 import com.wuliu.data.GetDataFromMySql;
-import com.wuliu.element.operation.ClickOperation;
-import com.wuliu.element.operation.ElementObject;
-import com.wuliu.element.operation.InputTextOperation;
-import com.wuliu.page.operation.AssertOperation;
+import com.wuliu.entity.ElementObject;
+import com.wuliu.operation.element.ClickOperation;
+import com.wuliu.operation.element.InputTextOperation;
+import com.wuliu.operation.page.AssertOperation;
 import com.wuliu.testcase.TestCase;
 import com.wuliu.utils.AppSwipeUtils;
 import com.wuliu.utils.DriverInitialUtils;
@@ -29,6 +29,7 @@ public class AppActionKeyWords {
     		DriverInitialUtils.appDriverInitial(product);
     		LogUtils.info(product+"app启动成功");
         } catch (Exception e) {
+        	TestCase.result = false;
         	LogUtils.info(product+"app启动异常，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }
@@ -40,6 +41,7 @@ public class AppActionKeyWords {
     		DriverInitialUtils.appClose(product);
     		LogUtils.info(product+"app关闭成功");
     	} catch (Exception e) {
+    		TestCase.result = false;
         	LogUtils.info(product+"app关闭异常，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
     	}

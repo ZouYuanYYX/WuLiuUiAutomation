@@ -14,6 +14,8 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.wuliu.data.FinalData;
+import com.wuliu.entity.AndroidDevice;
+import com.wuliu.entity.AppiumServier;
 import com.wuliu.testcase.TestCase;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -25,11 +27,17 @@ import io.appium.java_client.android.AndroidDriver;
  */
 
 public class DriverInitialUtils {
+    public static Process pShipper;
+    public static Process pCarrier;
+	private static AndroidDevice appShipper = new AndroidDevice(FinalData.SHIPPER_PACKAGNAME(),FinalData.SHIPPER_DEVICE_NAME(),FinalData.SHIPPER_VERSION(),FinalData.SHIPPER_URL());
+	private static AppiumServier appiumShipper = new AppiumServier(appShipper,pShipper,FinalData.SHIPPER_PORT(),FinalData.APPIUM_SHIPPER_LOG_PATH());
+	    
+	private static AndroidDevice appCarrier = new AndroidDevice(FinalData.CARRIER_PACKAGNAME(),FinalData.CARRIER_DEVICE_NAME(),FinalData.CARRIER_VERSION(),FinalData.CARRIER_URL());
+	private static AppiumServier appiumCarrier = new AppiumServier(appCarrier,pCarrier,FinalData.CARRIER_PORT(),FinalData.APPIUM_CARRIER_LOG_PATH());
+	
     public static WebDriver webDriver;
     public static AndroidDriver appShipperDriver;
     public static AndroidDriver appCarrierDriver;
-    public static Process pShipper;
-    public static Process pCarrier;
     public static Actions actions;
     
 
@@ -59,12 +67,16 @@ public class DriverInitialUtils {
     
     public static void appDriverInitial(String product) {
     	if (product.trim().contains("货主")||product.trim().contains("货运站")) {
-    	    appShipperDriver = appInitial(FinalData.SHIPPER(),pShipper,FinalData.SHIPPER_CMD(),FinalData.SHIPPER_DEVICE(),
-    				FinalData.SHIPPER_DEVICE_NAME(),FinalData.ANDROID_SHIPPER(),FinalData.SHIPPER_URL());
+    		//开启appium服务
+    		appiumShipper.startAppium(35);
+    		//打开app
+    		appShipperDriver = appShipper.AndroidDriverInitial();
     	}	
     	if (product.trim().contains("车主")||product.trim().contains("司机")) {
-    	    appCarrierDriver = appInitial(FinalData.CARRIER(),pCarrier,FinalData.CARRIER_CMD(),FinalData.CARRIER_DEVICE(),
-    				FinalData.CARRIER_DEVICE_NAME(),FinalData.ANDROID_CARRIER(),FinalData.CARRIER_URL());
+    		//开启appium服务
+    		appiumCarrier.startAppium(35);
+    		//打开app
+    		appCarrierDriver = appCarrier.AndroidDriverInitial();
     	}
     }
     
@@ -72,82 +84,19 @@ public class DriverInitialUtils {
     	if (product.trim().contains("货主")||product.trim().contains("货运站")) {
     		if (appShipperDriver != null) {
     			appShipperDriver.quit();
+    			System.out.println("货主或货运站app已关闭");
+    			appiumShipper.stopAppium();
             }        
-            if (pShipper != null) {
-            	pShipper.destroy();
-            }
+            
     	}
     	
     	if (product.trim().contains("车主")||product.trim().contains("司机")) {
     		if (appCarrierDriver != null) {
     			appCarrierDriver.quit();
-            }        
-            if (pCarrier != null) {
-            	pCarrier.destroy();
-            }
+    			System.out.println("车主或司机app已关闭");
+    			appiumCarrier.stopAppium();
+    		}        
     	}
-    }
-    
-    /**
-     * 货主货运站app打开初始化类
-     */   
-    private static AndroidDriver appInitial(String packageName,Process p,
-    		String cmd,String connectDevice,String deviceName,String version,String url) {
-        AndroidDriver driver = null;
-        try {
-			Runtime.getRuntime().exec(connectDevice);
-			//使用cmd命令开启appium服务
-	    	p = Runtime.getRuntime().exec(cmd);
-	    	//等待35s，使appium完全启动
-	    	Thread.sleep(35000);        
-	        if(p != null) {
-	            System.out.println("appium启动成功");
-	            LogUtils.info("appium启动成功");
-	        }
-	    	//设置apk路径
-	    	File classpathRoot = new File(System.getProperty("user.dir"));
-	    	File appDir = new File(classpathRoot, "apps");
-	    	File app = new File(appDir, packageName);
-	    	
-	    	//设置自动化相关参数
-	    	DesiredCapabilities capabilities = new DesiredCapabilities();
-	    	capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
-	    	capabilities.setCapability("platformName", "Android");
-	    	capabilities.setCapability("deviceName", deviceName);
-	    	
-	    	//设置安卓系统版本
-	    	capabilities.setCapability("platformVersion", version);
-	    	
-	    	//使用的平台
-            capabilities.setCapability(CapabilityType.PLATFORM, "WINDOWS");
-	    	
-            //将appium超时时间改长
-            capabilities.setCapability("newCommandTimeout", 240);
-	    	
-	    	//设置apk路径
-	    	capabilities.setCapability("app", app.getAbsolutePath());
-	    	
-	    	//每次启动清空session,否则会报不能新建session
-            capabilities.setCapability("sessionOverride", true);
-            
-            //设置键盘为appium的键盘
-            capabilities.setCapability("unicodeKeyboard", "True");  
-            capabilities.setCapability("resetKeyboard", "True");
-	    	
-	    	//初始化        
-	    	driver = new AndroidDriver(new URL(url), capabilities);
-	    	return driver;
-		} catch (MalformedURLException e) {
-		    TestCase.result = false;
-			e.printStackTrace();
-		} catch (IOException e) {
-		    TestCase.result = false;
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-		    TestCase.result = false;
-			e.printStackTrace();
-		}
-        return driver;
     }
 
 }
