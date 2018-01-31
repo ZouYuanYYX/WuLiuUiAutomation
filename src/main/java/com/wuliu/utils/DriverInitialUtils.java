@@ -27,13 +27,11 @@ import io.appium.java_client.android.AndroidDriver;
  */
 
 public class DriverInitialUtils {
-    public static Process pShipper;
-    public static Process pCarrier;
 	private static AndroidDevice appShipper = new AndroidDevice(FinalData.SHIPPER_PACKAGNAME(),FinalData.SHIPPER_DEVICE_NAME(),FinalData.SHIPPER_VERSION(),FinalData.SHIPPER_URL());
-	private static AppiumServier appiumShipper = new AppiumServier(appShipper,pShipper,FinalData.SHIPPER_PORT(),FinalData.APPIUM_SHIPPER_LOG_PATH());
+	private static AppiumServier appiumShipper = new AppiumServier(appShipper,FinalData.SHIPPER_PORT(),FinalData.APPIUM_SHIPPER_LOG_PATH());
 	    
 	private static AndroidDevice appCarrier = new AndroidDevice(FinalData.CARRIER_PACKAGNAME(),FinalData.CARRIER_DEVICE_NAME(),FinalData.CARRIER_VERSION(),FinalData.CARRIER_URL());
-	private static AppiumServier appiumCarrier = new AppiumServier(appCarrier,pCarrier,FinalData.CARRIER_PORT(),FinalData.APPIUM_CARRIER_LOG_PATH());
+	private static AppiumServier appiumCarrier = new AppiumServier(appCarrier,FinalData.CARRIER_PORT(),FinalData.APPIUM_CARRIER_LOG_PATH());
 	
     public static WebDriver webDriver;
     public static AndroidDriver appShipperDriver;
@@ -67,36 +65,40 @@ public class DriverInitialUtils {
     
     public static void appDriverInitial(String product) {
     	if (product.trim().contains("货主")||product.trim().contains("货运站")) {
-    		//开启appium服务
-    		appiumShipper.startAppium(35);
+    		//开启appium服务,35000为毫秒，即35秒
+    		appiumShipper.startAppium(35000);
     		//打开app
     		appShipperDriver = appShipper.AndroidDriverInitial();
     	}	
     	if (product.trim().contains("车主")||product.trim().contains("司机")) {
     		//开启appium服务
-    		appiumCarrier.startAppium(35);
+    		appiumCarrier.startAppium(35000);
     		//打开app
     		appCarrierDriver = appCarrier.AndroidDriverInitial();
     	}
     }
-    
+    /**
+	 * ((AppiumDriver)driver).closeApp(); // Close the app which was provided in the capabilities at session creation   
+     *((AppiumDriver)driver).close(); // from *RemoteWebDriver.java*, used to close the current browser page  
+     *((AppiumDriver)driver).quit(); // quits the session created between the client and the server
+	 */
     public static void appClose(String product) {
     	if (product.trim().contains("货主")||product.trim().contains("货运站")) {
     		if (appShipperDriver != null) {
-    			appShipperDriver.quit();
+    			appShipperDriver.closeApp();
     			System.out.println("货主或货运站app已关闭");
     			appiumShipper.stopAppium();
             }        
-            
     	}
     	
     	if (product.trim().contains("车主")||product.trim().contains("司机")) {
     		if (appCarrierDriver != null) {
-    			appCarrierDriver.quit();
+    			appCarrierDriver.closeApp();
     			System.out.println("车主或司机app已关闭");
     			appiumCarrier.stopAppium();
     		}        
     	}
+    	
     }
 
 }

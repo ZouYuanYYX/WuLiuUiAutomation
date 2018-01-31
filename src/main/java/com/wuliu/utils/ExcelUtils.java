@@ -85,7 +85,8 @@ public class ExcelUtils {
         row = sheet.getRow(rownum);
         cell = row.getCell(cellnum);
         if (cell != null) {
-            return cell.getStringCellValue();
+        	//得到的值不管是什么类型都转换成字符串
+            return cell.getRichStringCellValue().getString();
         } else {
             return null;
         }    

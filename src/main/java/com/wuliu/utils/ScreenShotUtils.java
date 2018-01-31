@@ -29,6 +29,7 @@ public class ScreenShotUtils {
             FileOutputStream out = new FileOutputStream(path+"/"+sheetName+"_"+testCaseId+".png");
             FileUtils.copyFile(scrFile, out);
         } catch (Exception e) {
+        	System.out.print("保存截图失败，具体失败信息为："+e.getMessage());
             e.printStackTrace();
         }
     }
@@ -39,20 +40,24 @@ public class ScreenShotUtils {
      * @param testCaseId
      * @param product
      */
-    public static void screenShot(String picturePath,String sheetName, String testCaseId,String product) {
-        if (product.trim().contains("货主")||product.trim().contains("货运站")) {
-            if (DriverInitialUtils.appShipperDriver != null) {
-                screenShotUtil(DriverInitialUtils.appShipperDriver, picturePath, sheetName, testCaseId);
+    public static void screenShot(String picturePath,String sheetName, String testCaseId,String product,String function) {
+        //如果关闭app或浏览器，则不做截图操作
+    	if (!function.trim().equals("关闭")) {
+    		if (product.trim().contains("货主")||product.trim().contains("货运站")) {
+                if (DriverInitialUtils.appShipperDriver != null) {
+                    screenShotUtil(DriverInitialUtils.appShipperDriver, picturePath, sheetName, testCaseId);
+                } 
+            } else if (product.trim().contains("车主")||product.trim().contains("司机")) {
+                if (DriverInitialUtils.appCarrierDriver != null) {
+                    screenShotUtil(DriverInitialUtils.appCarrierDriver, picturePath, sheetName, testCaseId);
+                }
+            } else {
+                if (DriverInitialUtils.webDriver != null) {
+                    screenShotUtil(DriverInitialUtils.webDriver, picturePath, sheetName, testCaseId);
+                }
             }
-        } else if (product.trim().contains("车主")||product.trim().contains("司机")) {
-            if (DriverInitialUtils.appCarrierDriver != null) {
-                screenShotUtil(DriverInitialUtils.appCarrierDriver, picturePath, sheetName, testCaseId);
-            }
-        } else {
-            if (DriverInitialUtils.webDriver != null) {
-                screenShotUtil(DriverInitialUtils.webDriver, picturePath, sheetName, testCaseId);
-            }
-        }
+    	}
+    	
     }
 
 }

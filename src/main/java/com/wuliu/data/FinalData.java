@@ -16,6 +16,7 @@ public class FinalData {
 	public static final String PATH() {
 		return properties.getProperty("PATH");
 	}
+	//日志的path
 	public static final String LOGPATH() {
 		return properties.getProperty("LOGPATH");
 	}
@@ -29,7 +30,7 @@ public class FinalData {
 	public static final String APPIUM_CARRIER_LOG_PATH() {
 		return properties.getProperty("APPIUM_CARRIER_LOG_PATH");
 	}
-	
+	//存放测试用例的表sheet名
 	public static final String SHEETNAME() {
 		return properties.getProperty("SHEETNAME");
 	}

@@ -43,7 +43,7 @@ public class AnalyzeExcelKeyWords {
                 		map.get("value3"), map.get("value4"),map.get("elementLocation1"),map.get("elementLocation2"));
                 if (TestCase.result == true) {
                     //保存截图
-                    ScreenShotUtils.screenShot(picturePath,sheetName,map.get("testCaseId"),map.get("product"));
+                    ScreenShotUtils.screenShot(picturePath,sheetName,map.get("testCaseId"),map.get("product"),map.get("function"));
                     //在日志中打印测试步骤执行完毕
                     LogUtils.info(map.get("testCaseId")+"测试步骤执行成功");
                     ExcelUtils.setCell(rowNum, 14, "测试步骤执行成功", sheetName, FinalData.PATH());
