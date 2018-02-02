@@ -37,7 +37,7 @@ public class GetDataFromMySql {
 	private static Map<String,String> getUserTransIdFromSql(String userId) {
 		SqlSession sqlSession = null;
 		List<Map<String,String>> transIds = new ArrayList<Map<String,String>>();
-		Map<String,String> transId = new HashMap();
+		Map<String,String> transId = new HashMap<String, String>();
 		try {
 			SqlSessionFactory goodsOwnerSqlSessionFactory = SqlSessionFactoryUtil.getGoodsOwnerSqlsessionFactory();
 			sqlSession = goodsOwnerSqlSessionFactory.openSession();
