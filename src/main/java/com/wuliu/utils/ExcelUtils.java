@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -93,8 +93,8 @@ public class ExcelUtils {
     }
     
     public static List<Map<String,String>> getMultipleCell(String sheetName,int rownum) {
-    	List<Map<String,String>> list = new ArrayList();
-        Map<String,String> map = new HashedMap();
+    	List<Map<String,String>> list = new ArrayList<Map<String, String>>();
+        Map<String,String> map = new HashMap<String,String>();
         String paramsName = null;
       //读取excel里每一行的数据，put进map
         //getCell(sheetName,0,i)获取的其实就是表头名

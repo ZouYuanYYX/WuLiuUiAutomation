@@ -1,22 +1,14 @@
 package com.wuliu.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.wuliu.data.FinalData;
 import com.wuliu.entity.AndroidDevice;
 import com.wuliu.entity.AppiumServier;
-import com.wuliu.testcase.TestCase;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -34,8 +26,8 @@ public class DriverInitialUtils {
 	private static AppiumServier appiumCarrier = new AppiumServier(appCarrier,FinalData.CARRIER_PORT(),FinalData.APPIUM_CARRIER_LOG_PATH());
 	
     public static WebDriver webDriver;
-    public static AndroidDriver appShipperDriver;
-    public static AndroidDriver appCarrierDriver;
+    public static AndroidDriver<?> appShipperDriver;
+    public static AndroidDriver<?> appCarrierDriver;
     public static Actions actions;
     
 

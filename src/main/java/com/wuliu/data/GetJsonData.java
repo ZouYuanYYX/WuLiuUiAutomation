@@ -23,7 +23,8 @@ public class GetJsonData {
     public static String getMultipleMemberJsonData (String jsonMessage,String member) {
         String jsonStr = null;
         JSONObject jsonObject = JSONObject.fromObject(jsonMessage);  
-        Map<String, Object> mapJson = JSONObject.fromObject(jsonObject);     
+        @SuppressWarnings("unchecked")
+		Map<String, Object> mapJson = JSONObject.fromObject(jsonObject);     
         for(Entry<String,Object> entry : mapJson.entrySet()){
             String key = entry.getKey();
             System.out.println("KEY:"+entry.getKey()+"  -->  Value:"+entry.getValue()+"\n");  

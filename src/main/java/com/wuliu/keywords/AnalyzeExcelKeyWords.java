@@ -2,15 +2,14 @@ package com.wuliu.keywords;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.collections.map.HashedMap;
 
 import com.wuliu.data.FinalData;
 import com.wuliu.testcase.TestCase;
 import com.wuliu.utils.ExcelUtils;
-import com.wuliu.utils.DriverInitialUtils;
 import com.wuliu.utils.LogUtils;
+import com.wuliu.utils.DriverInitialUtils;
 import com.wuliu.utils.ScreenShotUtils;
 
 import junit.framework.Assert;
@@ -29,7 +28,7 @@ public class AnalyzeExcelKeyWords {
     public void analyzeExcel (String mainSheetSuiteCaseId,String sheetName,int rowNum,String picturePath) {
         
     	String paramsName = null;
-        Map<String,String> map = new HashedMap();
+        Map<String,String> map = new HashMap<String,String>();
         //将每一行每一列的值指给对应的表头参数，后续通过表头参数直接get到值
         for (int i=0;i<ExcelUtils.getCellCount(sheetName);i++) {
         	paramsName = ExcelUtils.getCell(sheetName,0,i);
@@ -80,8 +79,8 @@ public class AnalyzeExcelKeyWords {
             String elementLocation2) {
         WebActionKeyWords webActionKeyWords = new WebActionKeyWords();
         AppActionKeyWords appActionKeyWords = new AppActionKeyWords();
-        Class clazzWeb = webActionKeyWords.getClass();
-        Class clazzApp = appActionKeyWords.getClass();
+        Class<? extends WebActionKeyWords> clazzWeb = webActionKeyWords.getClass();
+        Class<? extends AppActionKeyWords> clazzApp = appActionKeyWords.getClass();
         Method[] methodsWeb = clazzWeb.getDeclaredMethods();
         Method[] methodsApp = clazzApp.getDeclaredMethods();
         if ("web".equals(testDevices)) {
