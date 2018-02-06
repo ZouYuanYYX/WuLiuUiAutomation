@@ -1,22 +1,14 @@
 package com.wuliu.testcase;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
-
 import com.wuliu.data.FinalData;
 import com.wuliu.keywords.AnalyzeExcelKeyWords;
 import com.wuliu.utils.CreateFileUtils;
 import com.wuliu.utils.ExcelUtils;
-import com.wuliu.utils.DriverInitialUtils;
 import com.wuliu.utils.LogUtils;
 
 public class TestCase {

@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class FinalData {
     //读取excel_and_app_config配置文件
-	private static Properties properties = GetPropertiesData.getProperties("recourses/properties/excel_and_app_config.properties");
+	private static Properties properties = GetPropertiesData.getProperties("recources/properties/excel_and_app_config.properties");
 	//excel的path
 	public static final String PATH() {
 		return properties.getProperty("PATH");
