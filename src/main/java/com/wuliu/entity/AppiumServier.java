@@ -3,7 +3,6 @@ package com.wuliu.entity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
 import java.net.URI;
 
 import org.apache.http.HttpEntity;
@@ -16,9 +15,6 @@ import org.apache.http.util.EntityUtils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.sun.jna.Pointer;
-import com.sun.jna.platform.win32.Kernel32;
-import com.sun.jna.platform.win32.WinNT;
 import com.wuliu.utils.LogUtils;
 /**
  * 开启appium服务的类

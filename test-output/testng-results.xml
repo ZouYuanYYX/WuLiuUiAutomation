@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="65604" started-at="2018-01-31T11:38:55Z" finished-at="2018-01-31T11:40:00Z">
+  <suite name="Default suite" duration-ms="257346" started-at="2018-02-06T02:03:09Z" finished-at="2018-02-06T02:07:26Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="65604" started-at="2018-01-31T11:38:55Z" finished-at="2018-01-31T11:40:00Z">
+    <test name="Default test" duration-ms="257346" started-at="2018-02-06T02:03:09Z" finished-at="2018-02-06T02:07:26Z">
       <class name="com.wuliu.testcase.TestCase">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.wuliu.testcase.TestCase@35d176f7]" name="beforeMethod" is-config="true" duration-ms="819" started-at="2018-01-31T19:38:55Z" finished-at="2018-01-31T19:38:56Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.wuliu.testcase.TestCase@6d3f6300]" name="beforeMethod" is-config="true" duration-ms="1602" started-at="2018-02-06T10:03:09Z" finished-at="2018-02-06T10:03:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testCase()[pri:0, instance:com.wuliu.testcase.TestCase@35d176f7]" name="testCase" duration-ms="64769" started-at="2018-01-31T19:38:56Z" finished-at="2018-01-31T19:40:00Z">
+        <test-method status="PASS" signature="testCase()[pri:0, instance:com.wuliu.testcase.TestCase@6d3f6300]" name="testCase" duration-ms="255734" started-at="2018-02-06T10:03:11Z" finished-at="2018-02-06T10:07:26Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.wuliu.testcase.TestCase@35d176f7]" name="afterMethod" is-config="true" duration-ms="0" started-at="2018-01-31T19:40:00Z" finished-at="2018-01-31T19:40:00Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.wuliu.testcase.TestCase@6d3f6300]" name="afterMethod" is-config="true" duration-ms="0" started-at="2018-02-06T10:07:26Z" finished-at="2018-02-06T10:07:26Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->

@@ -80,7 +80,7 @@ public class ElementObject {
      * @return
      */
     private By selectElementLocationWays () {
-        By by = null;  
+        By by = null;
         switch (type.toLowerCase().trim()) {
 		case "id" : 
 			by = By.id(expression);
