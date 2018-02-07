@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 
 import org.openqa.selenium.WebDriver;
 
-import com.wuliu.testcase.TestCase;
+import com.wuliu.MainFunction;
 import com.wuliu.utils.LogUtils;
 
 public class IframOperation {
@@ -18,7 +18,7 @@ public class IframOperation {
         try {
             driver.switchTo().frame(iframe);
         } catch (Exception e) {
-            TestCase.result = false;
+        	MainFunction.result = false;
             LogUtils.error("iframe不存在或错误");
             e.printStackTrace();
         }

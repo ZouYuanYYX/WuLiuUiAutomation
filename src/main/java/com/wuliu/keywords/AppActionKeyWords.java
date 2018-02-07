@@ -1,12 +1,12 @@
 package com.wuliu.keywords;
 
 
+import com.wuliu.MainFunction;
 import com.wuliu.data.GetDataFromMySql;
 import com.wuliu.entity.ElementObject;
 import com.wuliu.operation.element.ClickOperation;
 import com.wuliu.operation.element.InputTextOperation;
 import com.wuliu.operation.page.AssertOperation;
-import com.wuliu.testcase.TestCase;
 import com.wuliu.utils.AppSwipeUtils;
 import com.wuliu.utils.DriverInitialUtils;
 import com.wuliu.utils.LogUtils;
@@ -29,7 +29,7 @@ public class AppActionKeyWords {
     		DriverInitialUtils.appDriverInitial(product);
     		LogUtils.info(product+"app启动成功");
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.info(product+"app启动异常，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class AppActionKeyWords {
     		DriverInitialUtils.appClose(product);
     		LogUtils.info(product+"app关闭成功");
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.info(product+"app关闭异常，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
     	}
@@ -53,7 +53,7 @@ public class AppActionKeyWords {
             Thread.sleep(Integer.parseInt(time));
             LogUtils.info("休眠"+Integer.parseInt(time)/1000+"秒成功");
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.info("线程休眠时出现异常，具体异常信息"+e.getMessage());
             e.printStackTrace();
         }
@@ -81,7 +81,7 @@ public class AppActionKeyWords {
             	LogUtils.info("app输入框成功输入"+value1);
             }
         } catch (Exception e) {
-        		TestCase.result = false;
+        		MainFunction.result = false;
 	        	LogUtils.info("往输入框里输入"+value1+"出现异常，具体异常信息为"+e.getMessage());
 	        	e.printStackTrace();
         }   	
@@ -111,7 +111,7 @@ public class AppActionKeyWords {
             	LogUtils.info("app输入框成功清空");
             } 
         } catch (Exception e) {
-        		TestCase.result = false;
+        		MainFunction.result = false;
 	        	LogUtils.info("输入框清空出现异常，具体异常信息为"+e.getMessage());
 	        	e.printStackTrace();
         }  
@@ -139,7 +139,7 @@ public class AppActionKeyWords {
             	LogUtils.info("app端单击页面元素"+elementLocation1+"成功");
             } 
         } catch (Exception e) {
-        		TestCase.result = false;
+        		MainFunction.result = false;
 	        	LogUtils.info("单击页面元素"+elementLocation1+"失败，具体异常信息为"+e.getMessage());
 	        	e.printStackTrace();
         } 
@@ -167,7 +167,7 @@ public class AppActionKeyWords {
                 LogUtils.info("根据工单id单击成功");  
             }
         } catch (Exception e) {
-            TestCase.result = false;
+            MainFunction.result = false;
             LogUtils.error("根据工单id单击失败，具体异常信息为"+e.getMessage());
             e.printStackTrace();
         }       
@@ -201,7 +201,7 @@ public class AppActionKeyWords {
 			}
 			
 		} catch (Exception e) {
-			TestCase.result = false;
+			MainFunction.result = false;
         	LogUtils.info(product+"滑动页面失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
 		}
@@ -229,7 +229,7 @@ public class AppActionKeyWords {
                 LogUtils.info("成功断言关键字“"+assertString+"”");
             }
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.info("出现断言失败，具体断言败信息："+e.getMessage());
         	e.printStackTrace();
     	}

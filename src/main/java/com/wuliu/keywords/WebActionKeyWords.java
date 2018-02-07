@@ -3,6 +3,8 @@ package com.wuliu.keywords;
 import java.util.Set;
 
 import org.openqa.selenium.Cookie;
+
+import com.wuliu.MainFunction;
 import com.wuliu.data.GetDataFromMySql;
 import com.wuliu.entity.ElementObject;
 import com.wuliu.operation.element.ClickOperation;
@@ -12,7 +14,6 @@ import com.wuliu.operation.page.AlertOperation;
 import com.wuliu.operation.page.AssertOperation;
 import com.wuliu.operation.page.IframOperation;
 import com.wuliu.operation.page.SwitchWindowOperation;
-import com.wuliu.testcase.TestCase;
 import com.wuliu.utils.DriverInitialUtils;
 import com.wuliu.utils.LogUtils;
 
@@ -38,7 +39,7 @@ public class WebActionKeyWords {
         	DriverInitialUtils.webInitial(browser, driverPath);
         	LogUtils.info("浏览器打开成功");
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("浏览器打开失败");
         	e.printStackTrace();
         }        
@@ -62,7 +63,7 @@ public class WebActionKeyWords {
             Thread.sleep(Integer.parseInt(time));
             LogUtils.info("休眠"+Integer.parseInt(time)/1000+"秒成功");
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("线程休眠时出现异常，具体异常信息"+e.getMessage());
             e.printStackTrace();
         }
@@ -83,7 +84,7 @@ public class WebActionKeyWords {
             System.out.println("打印cookie数据："+coo);
             LogUtils.info("使用cookie"+coo+"登录");
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("cookie登录出现异常，具体异常信息"+e.getMessage());
             e.printStackTrace();
     	}       
@@ -105,7 +106,7 @@ public class WebActionKeyWords {
             InputTextOperation.inputText(element.getElement(DriverInitialUtils.webDriver, elementLocation1, value1),value1);
             LogUtils.info("app输入框成功输入"+value1);
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
 	        LogUtils.error("往输入框里输入"+value1+"出现异常，具体异常信息为"+e.getMessage());
 	        e.printStackTrace();
         }   	
@@ -127,7 +128,7 @@ public class WebActionKeyWords {
             InputTextOperation.inputText(element.getElement(DriverInitialUtils.webDriver,elementLocation1,value2), GetDataFromMySql.userTransId(cellphone));
             LogUtils.info("app输入框成功输入"+GetDataFromMySql.userTransId(cellphone));
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
 	        LogUtils.error("往输入框里输入"+GetDataFromMySql.userTransId(cellphone)+"出现异常，具体异常信息为"+e.getMessage());
 	        e.printStackTrace();
         }   	
@@ -149,7 +150,7 @@ public class WebActionKeyWords {
             InputTextOperation.clearText(element.getElement(DriverInitialUtils.webDriver,elementLocation1,value1));
             LogUtils.info("web输入框成功清空");
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
 	        LogUtils.error("输入框清空出现异常，具体异常信息为"+e.getMessage());
 	        e.printStackTrace();
         }  
@@ -171,7 +172,7 @@ public class WebActionKeyWords {
             ClickOperation.buttonClick(element.getElement(DriverInitialUtils.webDriver,elementLocation1,value1));
             LogUtils.info("web端单击页面元素"+elementLocation1+"成功");
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
 	        LogUtils.error("单击页面元素"+elementLocation1+"失败，具体异常信息为"+e.getMessage());
 	        e.printStackTrace();
         } 
@@ -193,7 +194,7 @@ public class WebActionKeyWords {
             ClickOperation.doubleClick(element.getElement(DriverInitialUtils.webDriver,elementLocation1,value1), DriverInitialUtils.actions);
             LogUtils.info("web端双击页面元素"+elementLocation1+"成功");
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
 	        LogUtils.error("双击页面元素"+elementLocation1+"失败，具体异常信息为"+e.getMessage());
 	        e.printStackTrace();
         } 
@@ -216,7 +217,7 @@ public class WebActionKeyWords {
             ClickOperation.javaScriptClick(DriverInitialUtils.webDriver, element.getElement(DriverInitialUtils.webDriver,elementLocation1,value1));
             LogUtils.info("web端单击页面元素"+elementLocation1+"成功");		
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("单击页面元素"+elementLocation1+"失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
     	}
@@ -239,7 +240,7 @@ public class WebActionKeyWords {
             ClickOperation.moveToElementClick(element.getElement(DriverInitialUtils.webDriver,elementLocation1,value1),DriverInitialUtils.actions);
             LogUtils.info("web端单击页面元素"+elementLocation1+"成功");		
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("单击页面元素"+elementLocation1+"失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
     	}
@@ -261,7 +262,7 @@ public class WebActionKeyWords {
         	ClickOperation.multipleExpressionClick(element.getElements(DriverInitialUtils.webDriver,elementLocation1,value4), attribute, key, GetDataFromMySql.userTransId(cellphone));
             LogUtils.info("根据工单id多表达式单击成功");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("根据工单id多表达式单击失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }       
@@ -284,7 +285,7 @@ public class WebActionKeyWords {
         	        attribute, key, GetDataFromMySql.userAuctionId(cellphone));
             LogUtils.info("根据竞价单id多表达式单击成功");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("根据竞价单id多表达式单击失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }       
@@ -307,7 +308,7 @@ public class WebActionKeyWords {
         	        attribute, key, GetDataFromMySql.userItemId(cellphone));
             LogUtils.info("根据托运单id多表达式单击成功");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("根据托运单id多表达式单击失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }       
@@ -329,7 +330,7 @@ public class WebActionKeyWords {
         	ClickOperation.buttonClick(element.getElement(DriverInitialUtils.webDriver,elementLocation1,GetDataFromMySql.userTransId(cellphone))); 
             LogUtils.info("根据工单id单击成功");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("根据工单id单击失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }       
@@ -351,7 +352,7 @@ public class WebActionKeyWords {
         	ClickOperation.buttonClick(element.getElement(DriverInitialUtils.webDriver,elementLocation1,GetDataFromMySql.userAuctionId(cellphone))); 
             LogUtils.info("根据竞价单id单击成功");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("根据竞价单id单击失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }       
@@ -373,7 +374,7 @@ public class WebActionKeyWords {
         	ClickOperation.buttonClick(element.getElement(DriverInitialUtils.webDriver,elementLocation1,GetDataFromMySql.userItemId(cellphone))); 
             LogUtils.info("根据托运单id单击成功");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("根据托运单id单击失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         }       
@@ -385,7 +386,7 @@ public class WebActionKeyWords {
         	SwitchWindowOperation.switchWindow(DriverInitialUtils.webDriver, windowPage);
             LogUtils.info("切换窗口成功");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("切换窗口失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         } 
@@ -397,7 +398,7 @@ public class WebActionKeyWords {
             SwitchWindowOperation.closeWindow(DriverInitialUtils.webDriver,windowNum);
             LogUtils.info("窗口关闭成功");
         } catch (Exception e) {
-            TestCase.result = false;
+            MainFunction.result = false;
             LogUtils.error("窗口关闭失败，具体异常信息为"+e.getMessage());
             e.printStackTrace();
         }
@@ -419,7 +420,7 @@ public class WebActionKeyWords {
     		IframOperation.intoIframe(DriverInitialUtils.webDriver, iframe);
             LogUtils.info("成功切入iframe"+iframe);		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("切入"+iframe+"iframe失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         } 
@@ -441,7 +442,7 @@ public class WebActionKeyWords {
     		IframOperation.intoIframeContainsParams(DriverInitialUtils.webDriver, iframe, GetDataFromMySql.userTransId(cellphone));
             LogUtils.info("成功切入iframe");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("切入iframe失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         } 
@@ -463,7 +464,7 @@ public class WebActionKeyWords {
     		IframOperation.outIframe(DriverInitialUtils.webDriver);
             LogUtils.info("成功切出iframe");		
         } catch (Exception e) {
-        	TestCase.result = false;
+        	MainFunction.result = false;
         	LogUtils.error("切出iframe失败，具体异常信息为"+e.getMessage());
         	e.printStackTrace();
         } 
@@ -485,7 +486,7 @@ public class WebActionKeyWords {
     		AssertOperation.assertString(DriverInitialUtils.webDriver, assertString);
             LogUtils.info("成功断言关键字“"+assertString+"”");
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("出现断言失败，具体断言败信息："+e.getMessage());
         	e.printStackTrace();
     	}
@@ -507,7 +508,7 @@ public class WebActionKeyWords {
     		AlertOperation.confirmHander(DriverInitialUtils.webDriver, message);
             LogUtils.info("网页弹出确认、取消按钮框，已点击“"+message+"”按钮");
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("网页弹出框点击失败，具体异常信息为："+e.getMessage());
         	e.printStackTrace();
     	}
@@ -529,7 +530,7 @@ public class WebActionKeyWords {
     		SelectOperation.getSelectDataByIndex(element.getElement(DriverInitialUtils.webDriver,elementLocation1,index),Integer.parseInt(index), text);
             LogUtils.info("选择的下拉框数据为"+text);
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("下拉框数据选择失败，具体异常信息为："+e.getMessage());
         	e.printStackTrace();
     	}
@@ -550,7 +551,7 @@ public class WebActionKeyWords {
     		SelectOperation.getSelectDataByValue(element.getElement(DriverInitialUtils.webDriver,elementLocation1,value),value, text);
             LogUtils.info("选择的下拉框数据为"+text);
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("下拉框数据选择失败，具体异常信息为："+e.getMessage());
         	e.printStackTrace();
     	}
@@ -571,7 +572,7 @@ public class WebActionKeyWords {
     		SelectOperation.getSelectDataByVisibleText(element.getElement(DriverInitialUtils.webDriver,elementLocation1,text), text);
             LogUtils.info("选择的下拉框数据为"+text);
     	} catch (Exception e) {
-    		TestCase.result = false;
+    		MainFunction.result = false;
         	LogUtils.error("下拉框数据选择失败，具体异常信息为："+e.getMessage());
         	e.printStackTrace();
     	}

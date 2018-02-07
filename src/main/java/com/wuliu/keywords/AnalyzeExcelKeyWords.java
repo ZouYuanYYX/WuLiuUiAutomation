@@ -5,8 +5,9 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+
+import com.wuliu.MainFunction;
 import com.wuliu.data.FinalData;
-import com.wuliu.testcase.TestCase;
 import com.wuliu.utils.ExcelUtils;
 import com.wuliu.utils.LogUtils;
 import com.wuliu.utils.DriverInitialUtils;
@@ -19,6 +20,9 @@ import junit.framework.Assert;
  * @date 2017年12月15日
  */
 public class AnalyzeExcelKeyWords {
+	
+	  
+	
     /**
      * 读取excel测试步骤中每一行的数据并存储到list集合中
      * @param mainSheetSuiteCaseId
@@ -40,7 +44,7 @@ public class AnalyzeExcelKeyWords {
                 System.out.println("第"+rowNum+"步测试步骤执行");
                 keyWordsAction(sheetName,map.get("keyWordsFunction"),map.get("testDevices"),map.get("product"),map.get("value1"),map.get("value2"),
                 		map.get("value3"), map.get("value4"),map.get("elementLocation1"),map.get("elementLocation2"));
-                if (TestCase.result == true) {
+                if (MainFunction.result == true) {
                     //保存截图
                     ScreenShotUtils.screenShot(picturePath,sheetName,map.get("testCaseId"),map.get("product"),map.get("function"));
                     //在日志中打印测试步骤执行完毕
