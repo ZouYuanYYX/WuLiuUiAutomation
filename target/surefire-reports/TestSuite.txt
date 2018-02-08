@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.283 sec <<< FAILURE! - in TestSuite
-test(com.wuliu.testcase.TestCase)  Time elapsed: 0.022 sec  <<< FAILURE!
-java.lang.NullPointerException
-	at com.wuliu.testcase.TestCase.test(TestCase.java:8)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 230.52 sec - in TestSuite

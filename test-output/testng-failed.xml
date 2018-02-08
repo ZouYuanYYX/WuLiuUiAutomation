@@ -5,9 +5,7 @@
     <classes>
       <class name="com.wuliu.testcase.TestCase">
         <methods>
-          <include name="afterMethod"/>
-          <include name="testCase"/>
-          <include name="beforeMethod"/>
+          <include name="test"/>
         </methods>
       </class> <!-- com.wuliu.testcase.TestCase -->
     </classes>

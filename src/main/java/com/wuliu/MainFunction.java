@@ -18,10 +18,10 @@ public class MainFunction {
   public void analysisExcelMainSheet() {
 	  
 	  
-	  //读取excel数据
+	  //读取测试文档的excel数据
 	  ExcelUtils.readExcel(FinalData.PATH());
 	  //读取日志文件
-	  PropertyConfigurator.configure(FinalData.LOGPATH());
+	  PropertyConfigurator.configure("src/main/resources/properties/log4j.properties");
 	  
 	  
 	  //每次跑测试用例前，先去创建一个文件，用于存储每次跑的测试截图
