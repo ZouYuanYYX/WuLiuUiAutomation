@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class SqlSessionFactoryUtil {
 	
 	public static SqlSessionFactory getSqlSessionFactory(String resource) throws IOException {
+		//getResourceAsStream：classes目录下的相对路径
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory	= new SqlSessionFactoryBuilder().build(inputStream);
 		System.out.println(sqlSessionFactory);

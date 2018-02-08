@@ -35,6 +35,7 @@ public class DriverInitialUtils {
         if ("ie".equals(browser.toLowerCase().trim())) {
             System.setProperty("webdriver.ie.driver", driverPath);
             webDriver = new InternetExplorerDriver();
+            webDriver.manage().window().maximize();
             actions = new Actions(webDriver);
         }
         if ("chrome".equals(browser.toLowerCase().trim())) {
@@ -43,8 +44,8 @@ public class DriverInitialUtils {
             actions = new Actions(webDriver);
         }
         if ("firefox".equals(browser.toLowerCase().trim())) {
-            System.setProperty("webdriver.firefox.bin", driverPath);
             webDriver = new FirefoxDriver();
+            webDriver.manage().window().maximize();
             actions = new Actions(webDriver);
         }
     }
