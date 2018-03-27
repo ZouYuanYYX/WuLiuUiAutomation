@@ -14,9 +14,13 @@ import com.wuliu.dao.GoodsOwnerDao;
 import com.wuliu.dao.UicDao;
 import com.wuliu.utils.LogUtils;
 import com.wuliu.utils.SqlSessionFactoryUtil;
-
+/**
+ * 
+ * @author joy
+ *
+ */
 public class GetDataFromMySql {
-
+	
 	private static String getUserIdFromMySql(String cellphone) {
 		SqlSession sqlSession = null;
 		String userId = null;
@@ -46,11 +50,13 @@ public class GetDataFromMySql {
 			transId = transIds.get(transIds.size()-1);
 			System.out.println("获取到用户的最新工单id为："+transId.get("id"));
 			System.out.println("获取到用户的最新竞价单id为："+transId.get("auction_id"));
+			System.out.println("获取到用户的最新电商id为："+transId.get("out_biz_id"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			sqlSession.close();
 		}
+		//返回transId的map
 		return transId;
 		
 	}
@@ -71,28 +77,52 @@ public class GetDataFromMySql {
 		}
 		return itemId;
 	}
-	//返回货主下单的工单id
+	/**
+	 * 返回货主下单的工单id
+	 * @param cellphone
+	 * @return
+	 */
 	public static String userTransId(String cellphone) {
-		String user_id = getUserIdFromMySql(cellphone);
-    	String trans_id = getUserTransIdFromSql(user_id).get("id");
-    	LogUtils.info("获取到的工单id为："+trans_id);
-    	return trans_id;
+		String userId = getUserIdFromMySql(cellphone);
+    	String transId = getUserTransIdFromSql(userId).get("id");
+    	LogUtils.info("获取到的工单id为："+transId);
+    	return transId;
 	}
 	
-	//返回货主下单的竞价单id
+	/**
+	 * 返回货主下单的竞价单id
+	 * @param cellphone
+	 * @return
+	 */
 	public static String userAuctionId(String cellphone) {
-		String user_id = getUserIdFromMySql(cellphone);
-	    String auction_id = getUserTransIdFromSql(user_id).get("auction_id");
-	    LogUtils.info("获取到的竞价单id为："+auction_id);
-	    return auction_id;
+		String userId = getUserIdFromMySql(cellphone);
+	    String auctionId = getUserTransIdFromSql(userId).get("auction_id");
+	    LogUtils.info("获取到的竞价单id为："+auctionId);
+	    return auctionId;
 	}
 	
-	//返回货主下单的托运单id
+	/**
+	 * 返回水泥电商货主下单的水泥电商id
+	 * @param cellphone
+	 * @return
+	 */
+	public static String userShuiNiId(String cellphone) {
+		String userId = getUserIdFromMySql(cellphone);
+	    String shuiNiId = getUserTransIdFromSql(userId).get("out_biz_id");
+	    LogUtils.info("获取到的水泥电商id为："+shuiNiId);
+	    return shuiNiId;
+	}
+	
+	/**
+	 * 返回货主下单的托运单id
+	 * @param cellphone
+	 * @return
+	 */
 	public static String userItemId(String cellphone) {
-	    String auction_id = userAuctionId(cellphone);
-		String item_id = getItemIdFromMySql(auction_id);
-		LogUtils.info("获取到的托运单id为："+item_id);
-		return item_id;
+	    String auctionId = userAuctionId(cellphone);
+		String itemId = getItemIdFromMySql(auctionId);
+		LogUtils.info("获取到的托运单id为："+itemId);
+		return itemId;
 	}
 
 }

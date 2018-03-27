@@ -4,8 +4,9 @@
 	<resultMap type="java.util.HashMap" id="resultMap">
 		<result property = "id" column = "id"/>
 		<result property = "auction_id" column = "auction_id"/>
+		<result property = "out_biz_id" column = "out_biz_id"/>
 	</resultMap>
 	<select id = "getUserAllTransId" parameterType = "String" resultType = "java.util.HashMap">
-		select id,auction_id from goodsowner.`trans_req_order` where user_id = #{user_id}  ORDER BY gmt_create ASC
+		select id,auction_id,out_biz_id from goodsowner.`trans_req_order` where user_id = #{user_id}  ORDER BY gmt_create ASC
 	</select>
 </mapper>

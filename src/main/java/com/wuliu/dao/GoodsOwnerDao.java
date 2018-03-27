@@ -9,7 +9,11 @@ import java.util.Map;
  */
 public interface GoodsOwnerDao {
 	
-	//将获取到的工单id及竞价单id存入map
+	/**
+	 * 将获取到的工单id、竞价单id、水泥电商id存入map，Map<字段名称,字段值>
+	 * @param userId
+	 * @return
+	 */
 	List<Map<String,String>> getUserAllTransId(String userId);
 	
 }

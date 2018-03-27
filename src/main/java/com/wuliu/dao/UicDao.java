@@ -6,5 +6,10 @@ package com.wuliu.dao;
  * @data 2018年01月15日
  */
 public interface UicDao {
+	/**
+	 * 获取下单用户的userid
+	 * @param cellphone
+	 * @return
+	 */
 	String getUserId(String cellphone);
 }

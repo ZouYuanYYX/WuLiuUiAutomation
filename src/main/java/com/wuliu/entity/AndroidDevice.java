@@ -9,14 +9,26 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.android.AndroidDriver;
-
+/**
+ * 
+ * @author joy
+ *
+ */
 public class AndroidDevice {
 	private AndroidDriver driver;
-	//安卓包名
+	
+
+	/**
+	 * 安卓包名
+	 */
 	private String packageName;
-	//安卓设备名
+	/**
+	 * 安卓设备名
+	 */
 	private String deviceName;
-	//安卓设备版本
+	/**
+	 * 安卓设备版本
+	 */
 	private String deviceVersion;
 	private String url;
 
@@ -52,8 +64,11 @@ public class AndroidDevice {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	//初始化安卓drier
-	public AndroidDriver AndroidDriverInitial() {
+	/**
+	 * 初始化安卓drier
+	 * @return
+	 */
+	public AndroidDriver androidDriverInitial() {
         try {
 	    	//设置apk路径
 	    	File classpathRoot = new File(System.getProperty("user.dir"));
@@ -89,10 +104,20 @@ public class AndroidDevice {
     		return this.driver; 
         } catch (MalformedURLException e) {
 			e.printStackTrace();
+		}
+		return this.driver; 
+    }
+	
+	/**
+	 * 使用adb命令方式输入文案,只支持英文与数字
+	 * @param sendKey
+	 */
+    public void adbInputText (String sendKey) {
+    	try {
+			Runtime.getRuntime().exec("adb -s "+deviceName+" shell input text "+sendKey);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return this.driver; 
     }
 
 }

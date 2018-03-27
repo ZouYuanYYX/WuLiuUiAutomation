@@ -10,6 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+
+/**
+ * @author joy
+ */
 public class ElementObject {
 	
 	private String type ;
@@ -36,16 +40,16 @@ public class ElementObject {
 	 * @return
 	 */
 	public WebElement getElement (WebDriver driver,String expression,String params) {
-	    initialElement(expression,params);
-	    //显示等待，等待10秒，超过10秒找不到数据就报错
-	    WebElement element = (new WebDriverWait(driver,10))
-	            .until(new ExpectedCondition<WebElement>(){
-	                @Override
-                    public WebElement apply(WebDriver d) {
-                        return d.findElement(selectElementLocationWays());
-                    }
-	            });
-        return element;
+    	initialElement(expression,params);
+    	//显示等待，等待30秒，超过30秒找不到数据就报错
+    	WebElement element = (new WebDriverWait(driver,20))
+    		        .until(new ExpectedCondition<WebElement>(){
+    		            @Override
+    	                public WebElement apply(WebDriver d) {
+    	                    return d.findElement(selectElementLocationWays());
+    	                }
+    		        });
+    	return element;
 	}
 
 	/**
@@ -60,13 +64,13 @@ public class ElementObject {
 	}
 	
 	public void initialElement(String expression,String params) {
-    setType(expression.split(",")[0]); 
+    setType(expression.split(";")[0]); 
     String temp = null;
     try {
-        String trueValue = MessageFormat.format(expression.split(",")[1], params);
+        String trueValue = MessageFormat.format(expression.split(";")[1], params);
         temp = trueValue;
     } catch(Exception e) {
-        temp = expression.split(",")[1];
+        temp = expression.split(";")[1];
         e.printStackTrace();
     }finally {
         setExpression(temp);

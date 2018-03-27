@@ -4,11 +4,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -42,13 +47,21 @@ public class ExcelUtils {
             e.printStackTrace();
         }         
     }
-        
+    /**
+     * 获取excel表的行数    
+     * @param sheetName
+     * @return
+     */
     public static int getRowCount(String sheetName) {
         sheet = workbook.getSheet(sheetName);
         //getLastRowNum()返回值是n-1，去掉表头，正文数据正好是n-1
         return sheet.getLastRowNum();        
     }
-    
+    /**
+     * 获取excel表的列数
+     * @param sheetName
+     * @return
+     */
     public static int getCellCount(String sheetName) {
         sheet = workbook.getSheet(sheetName);
         row = sheet.getRow(0);
@@ -80,16 +93,40 @@ public class ExcelUtils {
         }       
     }
     
-    public static String getCell(String sheetName,int rownum,int cellnum) {
+    @SuppressWarnings("deprecation")
+	public static String getCell(String sheetName,int rownum,int cellnum) {
         sheet = workbook.getSheet(sheetName);
         row = sheet.getRow(rownum);
         cell = row.getCell(cellnum);
-        if (cell != null) {
-        	//得到的值不管是什么类型都转换成字符串
-            return cell.getRichStringCellValue().getString();
-        } else {
-            return null;
-        }    
+        SimpleDateFormat sFormat = new SimpleDateFormat("MM/dd/yyyy");
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        String cellValue = "";
+        if (cell == null) {
+            return cellValue;
+        } 
+        //字符串
+        else if(cell.getCellType() == Cell.CELL_TYPE_STRING) {
+            cellValue = cell.getStringCellValue();
+        } 
+        //数值
+        else if(cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
+            if(HSSFDateUtil.isCellDateFormatted(cell)) {
+                double d = cell.getNumericCellValue();
+                Date date = HSSFDateUtil.getJavaDate(d);
+                cellValue = sFormat.format(date);
+            } else {                
+                cellValue = decimalFormat.format((cell.getNumericCellValue()));
+            }
+        } 
+        //布尔值
+        else if(cell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
+            cellValue = String.valueOf(cell.getBooleanCellValue());
+        } 
+        //除以上几种类型，其他excel里的数据都用String来接收
+        else {
+        	cellValue = cell.getStringCellValue();
+        }
+        return cellValue;
     }
     
     public static List<Map<String,String>> getMultipleCell(String sheetName,int rownum) {

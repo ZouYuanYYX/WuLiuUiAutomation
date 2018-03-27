@@ -19,19 +19,31 @@ public class LogUtils {
     public static void endTestCase(String testCaseId) {
         logger.info("********************"+testCaseId+"	测试用例运行结束	"+"*******************");
     }
-    //定义打印INFO级别日志的方法
+    /**
+     * 定义打印INFO级别日志的方法
+     * @param message
+     */
     public static void info(String message) {
         logger.info(message);
     }
-    //定义打印WARN级别日志的方法
+    /**
+     * 定义打印WARN级别日志的方法
+     * @param message
+     */
     public static void warn(String message) {
         logger.warn(message);
     }
-    //定义打印ERROR级别日志的方法
+    /**
+     * 定义打印ERROR级别日志的方法
+     * @param message
+     */
     public static void error(String message) {
         logger.error(message);
     }
-    //定义打印DEBUG级别日志的方法
+    /**
+     * 定义打印DEBUG级别日志的方法
+     * @param message
+     */
     public static void debug(String message) {
         logger.debug(message);
     }

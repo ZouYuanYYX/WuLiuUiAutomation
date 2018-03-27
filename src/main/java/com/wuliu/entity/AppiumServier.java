@@ -23,9 +23,13 @@ import com.wuliu.utils.LogUtils;
  */
 
 public class AppiumServier {
-	//一台安卓设备开启一个appium服务
+	/**
+	 * 一台安卓设备开启一个appium服务
+	 */
 	private AndroidDevice device; 
-	//开启appium服务时需要占用的端口号
+	/**
+	 * 开启appium服务时需要占用的端口号
+	 */
 	private int port;
 	private String appiumLogPath;
 	
@@ -36,7 +40,9 @@ public class AppiumServier {
 		this.appiumLogPath = appiumLogPath;
 	}
 
-	public void startAppium(long milliseconds) {
+	public void startAppium() {
+		//开启appium服务,45000为毫秒，即45秒
+		long milliseconds = 45000;
 		try {
 			//使用cmd命令连接安卓设备
 			Runtime.getRuntime().exec("adb connect "+device.getDeviceName());

@@ -8,6 +8,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import com.wuliu.data.enumdata.Product;
+
 /**
  * 屏幕截图工具
  * @author joy
@@ -40,14 +42,14 @@ public class ScreenShotUtils {
      * @param testCaseId
      * @param product
      */
-    public static void screenShot(String picturePath,String sheetName, String testCaseId,String product,String function) {
+    public static void screenShot(String picturePath,String sheetName, String testCaseId,String product,String keyWords) {
         //如果关闭app或浏览器，则不做截图操作
-    	if (!function.trim().equals("关闭")) {
-    		if (product.trim().contains("货主")||product.trim().contains("货运站")) {
+    	if (!keyWords.trim().contains("关闭")) {
+    		if (product.trim().equals(Product.SHIPPER.getName())||product.trim().equals(Product.FREIGHTSTATION.getName())) {
                 if (DriverInitialUtils.appShipperDriver != null) {
                     screenShotUtil(DriverInitialUtils.appShipperDriver, picturePath, sheetName, testCaseId);
                 } 
-            } else if (product.trim().contains("车主")||product.trim().contains("司机")) {
+            } else if (product.trim().equals(Product.CARRIER.getName())||product.trim().equals(Product.DRIVER.getName())) {
                 if (DriverInitialUtils.appCarrierDriver != null) {
                     screenShotUtil(DriverInitialUtils.appCarrierDriver, picturePath, sheetName, testCaseId);
                 }

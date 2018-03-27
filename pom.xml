@@ -87,10 +87,11 @@
   			<version>2.19.1</version>
   			<configuration>
   			    <suiteXmlFiles>
-  			        <suiteXmlFile>F:/Users/UiAutomation/WuLiuUiAutomation/suitecase.xml</suiteXmlFile>
+  			        <suiteXmlFile>suitecase.xml</suiteXmlFile>
   			    </suiteXmlFiles>
   			</configuration>
   		</plugin>
+  		
   	</plugins>
   </build>
 </project>
