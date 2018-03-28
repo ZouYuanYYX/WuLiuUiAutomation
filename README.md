@@ -1,7 +1,9 @@
 #web、app界面自动化测试
 
 关键字驱动+selenium+appium+java+TestNG，使用excel管理测试用例，excel中的主sheet页控制测试用例是否需要运行，其他sheet页用来填写测试步骤。web端支持谷歌、ie、火狐浏览器，app端仅支持安卓。
+
 ##测试用例表头字段解释：
+
 1、测试用例表存放位置：
 
 	src\main\resources\excelTestCase\testdata.xlsx
@@ -13,6 +15,7 @@
 	测试步骤表名称：必填
 	测试用例是否执行：必填
 	运行结果：运行代码的时候，需要把excel关闭，否则无法将测试结果写入excel（因为excel被占用了）；
+
 3、测试步骤表表头解释：
 
 	suiteCaseId：主表测试用例id，必填
@@ -32,6 +35,7 @@
 	results：运行结果
 
 ##关键字解释：
+
 	浏览器 ：选择什么浏览器，需要传入参数value1，填写要打开的浏览器（目前支持：chrome、ie、firefox）;
 	打  开 ：打开url，需要传入参数value1，填写url地址;
 	打开app：输入需要打开的app;
@@ -51,6 +55,7 @@
 	切出iframe：切出iframe
 
 ##测试用例的编写：
+
 ### 1、web端
 	
 * driver驱动需要放置在：src\main\resources\drivers目录下；
@@ -58,6 +63,7 @@
 
 
 ### 2、app端
+
 * app测试包需要放置在：apps目录下；
 * app测试包名称、安卓设备名称等配置信息：src\main\resources\properties\excel_and_app_config.properties，配置信息如下：
 		
